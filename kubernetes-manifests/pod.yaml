@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-example-pod
+spec:
+  containers:
+  - name: my-example-pod
+    image: example-db
+    ports:
+      - containerPort: 5432
+    env:
+      - name: POSTGRES_USER
+        value: postgres
+      - name: POSTGRES_PASSWORD
+        value: postgres
+      - name: POSTGRES_DB
+        value: test_db 
+      - name: TZ
+        value: Asia/Tokyo

@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+build:
+  local:
+    push: true
+    useBuildkit: true
+    useDockerCLI: true # Required for MacOS & MicroK8s(Multipass)
+  artifacts:
+  - image: example-db
+    context: src/infra/database  
+profiles:
+  - name: local
+    portForward:
+      - resourceType: pod
+        resourceName: my-example-pod
+        port: 5432
+    deploy:
+      kubectl:
+        manifests:
+          - kubernetes-manifests/*
+      kubeContext: microk8s
