@@ -6,4 +6,4 @@ CREATE TABLE example_tbl (
 );
 
 INSERT INTO example_tbl (name) VALUES ('aoyagi');
--- INSERT INTO example_tbl (name) VALUES ('your_name');
+INSERT INTO example_tbl (name) VALUES ('your_name');

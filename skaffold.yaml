@@ -4,7 +4,6 @@ build:
   local:
     push: true
     useBuildkit: true
-    useDockerCLI: true # Required for MacOS & MicroK8s(Multipass)
   artifacts:
   - image: example-db
     context: src/infra/database  
