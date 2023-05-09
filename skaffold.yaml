@@ -1,20 +1,23 @@
-apiVersion: skaffold/v2beta29
+apiVersion: skaffold/v4beta2
 kind: Config
 build:
+  tagPolicy:
+    sha256: {}
   local:
     push: true
     useBuildkit: true
   artifacts:
   - image: example-db
-    context: src/infra/database  
+    context: src/infra/database
+deploy:
+  kubeContext: microk8s
 profiles:
   - name: local
     portForward:
       - resourceType: pod
         resourceName: my-example-pod
         port: 5432
-    deploy:
-      kubectl:
-        manifests:
-          - kubernetes-manifests/*
-      kubeContext: microk8s
+    manifests:
+      rawYaml: [
+      "./kubernetes-manifests/pod.yaml"
+      ]
